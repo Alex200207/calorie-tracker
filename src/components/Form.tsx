@@ -31,6 +31,12 @@ export default function Form() {
     });
   };
 
+  const isValidActivity = () => {
+    const { category, name, calories } = activity; //se crea una constante que va a desestructurar la actividad
+    return name.trim() !== "" && calories > 0 && category > 0; //se va a retornar si el nombre no esta vacio, si las calorias son mayores a 0 y si la categoria es mayor a 0
+    //trim es un metodo que va a quitar los espacios en blanco de un string
+  }
+
   return (
     <form className="space-y-5 bg-white shadow p-10 rounded-lg">
       <div className="grid grid-cols-1 gap 3">
@@ -80,7 +86,8 @@ export default function Form() {
 
       <input
         type="submit"
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg"
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg disabled:opacity-50"
+        disabled={!isValidActivity()} //si la actividad no es valida se deshabilita el boton
       />
     </form>
   );
