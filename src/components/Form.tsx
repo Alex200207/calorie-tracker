@@ -87,6 +87,7 @@ export default function Form() {
       <input
         type="submit"
         className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer rounded-lg disabled:opacity-50"
+        value={activity.category === 1 ? "Guardar Comida" : 'Guardar ejercicio'}//si la categoria es 1 va a guardar comida si no va a guardar ejercicio
         disabled={!isValidActivity()} //si la actividad no es valida se deshabilita el boton
       />
     </form>
