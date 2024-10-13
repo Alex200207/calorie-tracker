@@ -1,6 +1,7 @@
 import { categories } from "../data/categories";
 import { ChangeEvent } from "react";
 import { useState } from "react";
+import { FormEvent } from "react";
 import { Activity } from "../types";
 
 export default function Form() {
@@ -37,8 +38,14 @@ export default function Form() {
     //trim es un metodo que va a quitar los espacios en blanco de un string
   }
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault() //evitar que se recargue la pagina o evitar accion   por defecto
+    console.log('enviando formulario')
+  }
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form className="space-y-5 bg-white shadow p-10 rounded-lg"
+    onSubmit={handleSubmit }>
       <div className="grid grid-cols-1 gap 3">
         <label htmlFor="category" className="font-bold">
           Categoria:
