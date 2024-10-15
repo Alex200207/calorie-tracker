@@ -1,3 +1,4 @@
+import { act } from "react"
 import { Activity } from "../types"
 
 
@@ -35,7 +36,13 @@ export const activityReducer = (
         //este codigo maneja la logica para actualizar el state
         //todo lo que coloques aqui una ves mandes a llamar una accion se va a ejecutar
         //este if .
-        console.log('guardando actividad de save-activity')
+        //antes de este puedes manejar la logica de registros duplicados o todo loq que sea necesario
+       return{//este va retornar el estado actualizado
+            ...state,//copia del state
+            activities: [...state.activities, action.payload.newActivity]//se va a agregar una nueva actividad
+            //usamos el operador spreed para copiar el arreglo de actividades y luego agregamos la nueva actividad
+            
+       }
     }
     return state
 }
