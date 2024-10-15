@@ -1,4 +1,4 @@
-import { act } from "react"
+
 import { Activity } from "../types"
 
 
@@ -41,7 +41,7 @@ export const activityReducer = (
             ...state,//copia del state
             activities: [...state.activities, action.payload.newActivity]//se va a agregar una nueva actividad
             //usamos el operador spreed para copiar el arreglo de actividades y luego agregamos la nueva actividad
-            
+
        }
     }
     return state

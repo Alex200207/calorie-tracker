@@ -10,13 +10,14 @@ type FormProps = {
   dispatch: Dispatch<ActivityActions>
 }
 
+const initialState = {//se crea un estado inicial
+  category: 1,
+  name: "",
+  calories: 0,
+};
+
 export default function Form({dispatch}: FormProps) {
-  const [activity, setActivity] = useState<Activity>({
-    //se crea un estado para la actividad que va a ser un objeto asi evitamos tener tantos states
-    category: 1, //valor inicial de la categoria
-    name: "", //valor inicial de la actividad
-    calories: 0, // valor inicial de las calorias
-  });
+  const [activity, setActivity] = useState<Activity>(initialState); //se crea un estado de la actividad y se le pasa el estado inicial
 
   const handleChange = (
     e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement> //se crea una funcion para manejar el cambio de los inputs
@@ -49,6 +50,11 @@ export default function Form({dispatch}: FormProps) {
     
 
     dispatch({type: "save-activity", payload: {newActivity: activity}}) //se envia la accion de guardar actividad y se le pasa la nueva actividad
+    setActivity({ //se reinicia el estado de la actividad
+      category: 1,
+      name: "",
+      calories: 0
+    })
   }
 
   return (
