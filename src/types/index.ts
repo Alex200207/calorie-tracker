@@ -8,3 +8,4 @@ export type Category = {
         name: string,
         calories: number,
     }
+
