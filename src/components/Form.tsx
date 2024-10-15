@@ -1,10 +1,16 @@
 import { categories } from "../data/categories";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch } from "react";
 import { useState } from "react";
 import { FormEvent } from "react";
 import { Activity } from "../types";
+import { ActivityActions } from "../reducers/activity-reducer";
 
-export default function Form() {
+
+type FormProps = {
+  dispatch: Dispatch<ActivityActions>
+}
+
+export default function Form({dispatch}: FormProps) {
   const [activity, setActivity] = useState<Activity>({
     //se crea un estado para la actividad que va a ser un objeto asi evitamos tener tantos states
     category: 1, //valor inicial de la categoria
@@ -40,7 +46,9 @@ export default function Form() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault() //evitar que se recargue la pagina o evitar accion   por defecto
-    console.log('enviando formulario')
+    
+
+    dispatch({type: "save-activity", payload: {newActivity: activity}}) //se envia la accion de guardar actividad y se le pasa la nueva actividad
   }
 
   return (

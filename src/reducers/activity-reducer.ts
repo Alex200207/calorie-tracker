@@ -37,4 +37,5 @@ export const activityReducer = (
         //este if .
         console.log('guardando actividad de save-activity')
     }
+    return state
 }
