@@ -4,13 +4,15 @@ import { useState } from "react";
 import { FormEvent } from "react";
 import { Activity } from "../types";
 import { ActivityActions } from "../reducers/activity-reducer";
+import {v4 as uuidv4} from 'uuid'
 
 
 type FormProps = {
   dispatch: Dispatch<ActivityActions>
 }
 
-const initialState = {//se crea un estado inicial
+const initialState : Activity = {//se crea un estado inicial
+  id: uuidv4(),//se crea un id unico
   category: 1,
   name: "",
   calories: 0,
@@ -51,9 +53,8 @@ export default function Form({dispatch}: FormProps) {
 
     dispatch({type: "save-activity", payload: {newActivity: activity}}) //se envia la accion de guardar actividad y se le pasa la nueva actividad
     setActivity({ //se reinicia el estado de la actividad
-      category: 1,
-      name: "",
-      calories: 0
+      ...initialState,
+      id: uuidv4()//se crea un nuevo id unico
     })
   }
 
