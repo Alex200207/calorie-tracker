@@ -1,13 +1,12 @@
-
 import { useReducer } from "react";
 import Form from "./components/Form";
-import { activityReducer , initialState} from "./reducers/activity-reducer";
+import { activityReducer, initialState } from "./reducers/activity-reducer";
+import ActivityList from "./components/ActivityList";
 
 function App() {
-
-  const [state, dispatch] = useReducer(activityReducer, initialState)
+  const [state, dispatch] = useReducer(activityReducer, initialState);
   //dispacth es una funcion especial que nos va permitir ejecutar estas acciones
-console.log(state)
+
   return (
     <>
       <header className="bg-lime-600 py-3">
@@ -19,12 +18,13 @@ console.log(state)
       </header>
       <section className="bg-lime-500 py-20 px-5">
         <div className="max-w-4xl mx-auto">
-          <Form
-          dispatch={dispatch}
-          />
+          <Form dispatch={dispatch} />
         </div>
       </section>
 
+      <section className="p-10 mx-auto max-w-4xl">
+        <ActivityList activities={state.activities} />{/*pasamos las actividades al componente ActivityList*/}
+      </section>
     </>
   );
 }
