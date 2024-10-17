@@ -1,12 +1,15 @@
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import { Activity } from "../types";
 import { categories } from "../data/categories";
 import {PencilSquareIcon} from '@heroicons/react/24/outline'
+import { ActivityActions } from "../reducers/activity-reducer";
 
 type ActivityListProps = {
-  activities: Activity[]; //se crea una interfaz que va a recibir un arreglo de actividades
+  activities: Activity[], //se crea una interfaz que va a recibir un arreglo de actividades
+  dispatch: React.Dispatch<ActivityActions>;//se crea una interfaz que va a recibir un dispatch
 };
-export default function ActivityList({ activities }: ActivityListProps) {
+export default function ActivityList({ activities , dispatch}: ActivityListProps) {
+
   //se recibe el arreglo de actividades
 
   //creamos una funcion que va a recibir una categoria y va a retornar el nombre de la categoria
@@ -48,7 +51,9 @@ export default function ActivityList({ activities }: ActivityListProps) {
           </div>
           <div className="flex gap-5 items-center ">
             <button>
-              <PencilSquareIcon className="h-8 w-8 text-gray-800" />
+              <PencilSquareIcon className="h-8 w-8 text-gray-800" 
+              onClick={() => dispatch({type: 'set-activeId', payload: {id: activity.id}})}//se le pasa el id de la actividad              
+              />
             </button>
           </div>
         </div>

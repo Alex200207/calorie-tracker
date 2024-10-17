@@ -23,7 +23,11 @@ function App() {
       </section>
 
       <section className="p-10 mx-auto max-w-4xl">
-        <ActivityList activities={state.activities} />{/*pasamos las actividades al componente ActivityList*/}
+        <ActivityList 
+        activities={state.activities} 
+        dispatch={dispatch}
+        />{/*pasamos las actividades al componente ActivityList*/}
+        
       </section>
     </>
   );

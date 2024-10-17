@@ -11,17 +11,22 @@ export type ActivityActions = {
     payload: {newActivity : Activity}//pero cuando se genera una actividad nueva tenemos que pasarle cierta informacion
     //lo que el usuario ingreso en ese formulario eso se le conoce como el payload
     //piensa en el payload como los datos que se van a agregar a nuestro state
+} | {
+    type: 'set-activeId',//este es el type que se va a ejecutar cuando se seleccione una actividad
+    payload: {id: Activity['id']}//este es el id que se va a seleccionar
 }
 
 
 //nuestro state
 type ActivityState = {
     activities: Activity[]//colacamos nuestro arreglo y va ser de tipo Activity
+    activeId: Activity['id']//pasamos un look up type para que activeId sea de tipo id
 
 }
 
 export const initialState : ActivityState = {//asociamos nuestro activitystate
-    activities: []//lo definimos como un arreglo vacio
+    activities: [],//lo definimos como un arreglo vacio
+    activeId: '',//aqui se ira colocando el id que vayamos seleccionando
 
 }
 
@@ -44,5 +49,12 @@ export const activityReducer = (//este es el reducer
 
        }
     }
+    if(action.type === 'set-activeId'){
+        return{
+            ...state,
+            activeId: action.payload.id
+        }
+    }
+    
     return state
 }
