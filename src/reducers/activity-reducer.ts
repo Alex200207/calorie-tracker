@@ -26,7 +26,7 @@ export const initialState : ActivityState = {//asociamos nuestro activitystate
 }
 
 
-export const activityReducer = (
+export const activityReducer = (//este es el reducer
     //veras que tenemos activiy Actions para los acciones y activity state para el estado
     state : ActivityState =  initialState,//este reducer va a recibir un estado
     action : ActivityActions

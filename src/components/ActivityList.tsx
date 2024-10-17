@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import { Activity } from "../types";
 import { categories } from "../data/categories";
+import {PencilSquareIcon} from '@heroicons/react/24/outline'
+
 type ActivityListProps = {
   activities: Activity[]; //se crea una interfaz que va a recibir un arreglo de actividades
 };
@@ -33,7 +35,7 @@ export default function ActivityList({ activities }: ActivityListProps) {
                 activity.category === 1 ? "bg-lime-500" : "bg-orange-500"//se va a comparar si la categoria es igual a 1 se va a colocar un color de fondo lime-500 si no se va a colocar un color de fondo orange-500
               }`}
             >
-              {categoryNames(+activity.category)}{/*se le pasa la categoria*/}
+              {categoryNames(activity.category)}{/*se le pasa la categoria*/}
               {/*se le pasa la categoria*/}
             </p>
             {/*se le pasa la categoria*/}
@@ -44,7 +46,11 @@ export default function ActivityList({ activities }: ActivityListProps) {
               <span>calorias</span>
             </p>
           </div>
-          <div></div>
+          <div className="flex gap-5 items-center ">
+            <button>
+              <PencilSquareIcon className="h-8 w-8 text-gray-800" />
+            </button>
+          </div>
         </div>
       ))}
     </>
